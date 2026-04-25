@@ -1,55 +1,321 @@
-<html>
-    <body>
-        <h1 style="text-align: center;">Digital Health Record System..</h1>
-        <h2 style="text-align: center;">Welcome to the website where you will be able help others !!</h2>
-        <style>
-            body
-        {
-            background-color: rgb(72, 176, 210);
-        }
-         .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-         .container {
-              display: flex;
-              justify-content: center; 
-              align-items: center;    
-              height: 100vh;    
-              gap: 10px;  
-              }
-        button {
-            padding: 15px 30px;
-            font-size: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button 
-        {
-          background-color: rgb(185, 242, 172); 
-          color: rgb(17, 16, 17);       
-        }
-        </style>
-        </a>
-        <a href="SIGNUP.html"></a>
-          <title>Sign Up</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Resources Sharing System</title>
 
-  <h1>Create an Account</h1>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  <form>
-    <input type="text" placeholder="Enter your name"><br><br>
-    <input type="email" placeholder="Enter your email"><br><br>
-    <input type="password" placeholder="Enter password"><br><br>
-    <button type="submit">Sign Up</button>
-  </form>
+/* Background */
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,40,80,0.45),rgba(0,0,0,0.55)),
+    url("file:///C:/Users/boombastic/Downloads/mrsspic.webp");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+/* Animated Title */
+.website-name{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:40px;
+    font-weight:bold;
+    color:white;
+    text-shadow:3px 3px 10px black;
+    animation:moveTitle 3s forwards;
+    z-index:5;
+}
+
+@keyframes moveTitle{
+0%{
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:40px;
+}
+100%{
+top:20px;
+left:20px;
+transform:translate(0,0);
+font-size:26px;
+}
+}
+
+/* Navbar */
+.navbar{
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:none;
+    gap:10px;
+    z-index:10;
+}
+
+button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.signup-btn{background:#1565c0;}
+.login-btn{background:#2e7d32;}
+.submit-btn{background:#c62828; width:100%;}
+
+button:hover{
+    opacity:0.9;
+}
+
+/* About Section */
+.about-box{
+    max-width:900px;
+    margin:140px auto 40px;
+    background:rgba(255,255,255,0.90);
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 0 18px rgba(0,0,0,0.35);
+    display:none;
+}
+
+.about-box h2{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    font-size:18px;
+    line-height:1.7;
+    color:#222;
+    text-align:justify;
+}
+
+/* Forms */
+.container{
+    max-width:430px;
+    margin:40px auto;
+    background:rgba(255,255,255,0.93);
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 0 18px rgba(0,0,0,0.35);
+    display:none;
+}
+
+.container h2{
+    text-align:center;
+    margin-bottom:15px;
+    color:#0d47a1;
+}
+
+input,select{
+    width:100%;
+    padding:11px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:7px;
+}
+
+#message{
+    color:red;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Project Name -->
+<h1 class="website-name">Medical Resources Sharing System</h1>
+
+<!-- Buttons -->
+<div class="navbar" id="menu">
+<button class="signup-btn" onclick="showSignup()">SIGN UP</button>
+<button class="login-btn" onclick="showLogin()">LOG IN</button>
 </div>
-<a href="LOGIN.html"></a>
-<h1> Login here </h1>
-<form>
-  <input type="email" placeholder="Enter your email"><br><br>
-    <input type="password" placeholder="Enter password"><br><br>
-    <button type="submit">LOG IN</button>
-</form>
-    </body>
+
+<!-- ABOUT WEBSITE -->
+<div class="about-box" id="aboutSection">
+
+<h2>About The Website</h2>
+
+<p>
+Medical Resources Sharing System is a dynamic website created to support hospitals and healthcare centers during emergency situations by providing quick access to important medical resources. Users can sign up, log in, and request items such as blood pouches, oxygen cylinders, ICU beds, ventilators, medicines, and other supplies. They can enter the required quantity and hospital location, making the process faster, organized, and efficient.
+</p>
+
+</div>
+
+<!-- SIGNUP -->
+<div class="container" id="signupBox">
+<h2>Create Account</h2>
+
+<input type="text" id="fullname" placeholder="Full Name">
+<input type="email" id="signupEmail" placeholder="Email ID">
+<input type="password" id="signupPassword" placeholder="Password">
+
+<div id="message"></div>
+
+<button class="submit-btn" onclick="registerUser()">Create Account</button>
+</div>
+
+<!-- LOGIN -->
+<div class="container" id="loginBox">
+<h2>User Login</h2>
+
+<input type="email" id="loginEmail" placeholder="Email ID">
+<input type="password" id="loginPassword" placeholder="Password">
+
+<button class="submit-btn" onclick="loginUser()">Login</button>
+</div>
+
+<!-- RESOURCE PAGE -->
+<div class="container" id="resourcePage">
+
+<h2>What Does Hospital Need?</h2>
+
+<input type="text" placeholder="Hospital Name">
+<input type="text" placeholder="Hospital Location">
+
+<select id="resource" onchange="checkBlood()">
+<option value="">Select Required Resource</option>
+<option>Blood Pouch</option>
+<option>Oxygen Cylinder</option>
+<option>ICU Bed</option>
+<option>Ventilator</option>
+<option>Medicines</option>
+<option>Ambulance</option>
+</select>
+
+<select id="bloodGroup" style="display:none;">
+<option>Select Blood Group</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>O+</option>
+<option>O-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+
+<input type="number" placeholder="Quantity Required">
+
+<button class="submit-btn" onclick="submitRequest()">Submit Request</button>
+
+</div>
+
+<script>
+
+/* Show after animation */
+setTimeout(function(){
+document.getElementById("menu").style.display="flex";
+document.getElementById("aboutSection").style.display="block";
+},3000);
+
+/* Hide all */
+function hideAll(){
+document.getElementById("signupBox").style.display="none";
+document.getElementById("loginBox").style.display="none";
+document.getElementById("resourcePage").style.display="none";
+}
+
+/* Signup Page */
+function showSignup(){
+hideAll();
+document.getElementById("signupBox").style.display="block";
+}
+
+/* Login Page */
+function showLogin(){
+hideAll();
+document.getElementById("loginBox").style.display="block";
+}
+
+/* Register */
+function registerUser(){
+
+let name=document.getElementById("fullname").value;
+let email=document.getElementById("signupEmail").value;
+let pass=document.getElementById("signupPassword").value;
+
+let pattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+if(name=="" || email=="" || pass==""){
+document.getElementById("message").innerHTML="Please fill all fields";
+return;
+}
+
+if(!pattern.test(pass)){
+document.getElementById("message").innerHTML="Strong password required";
+return;
+}
+
+localStorage.setItem("email",email);
+localStorage.setItem("password",pass);
+
+alert("Signup Successful");
+hideAll();
+document.getElementById("resourcePage").style.display="block";
+}
+
+/* Login */
+function loginUser(){
+
+let email=document.getElementById("loginEmail").value;
+let pass=document.getElementById("loginPassword").value;
+
+let savedEmail=localStorage.getItem("email");
+let savedPass=localStorage.getItem("password");
+
+if(email==savedEmail && pass==savedPass){
+hideAll();
+document.getElementById("resourcePage").style.display="block";
+}
+else{
+alert("Invalid Email or Password");
+}
+
+}
+
+/* Blood */
+function checkBlood(){
+
+let resource=document.getElementById("resource").value;
+
+if(resource=="Blood Pouch"){
+document.getElementById("bloodGroup").style.display="block";
+}
+else{
+document.getElementById("bloodGroup").style.display="none";
+}
+
+}
+
+/* Submit */
+function submitRequest(){
+alert("Hospital Resource Request Submitted Successfully");
+}
+
+</script>
+
+</body>
 </html>
